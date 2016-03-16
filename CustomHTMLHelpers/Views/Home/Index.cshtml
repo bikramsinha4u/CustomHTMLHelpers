@@ -1,0 +1,91 @@
+﻿@model CustomHTMLHelpers.Models.DemoModel
+@{
+    ViewBag.Title = "Home";
+}
+<div class="container" style="text-align:center"><h1 class="text-info">Custom HTML Helper Library for ASP.NET MVC 5</h1></div>
+
+<div class="container">
+    <div class="row">
+        <div class="panel">
+            <div class="panel-heading panel-success text-warning">For Img Tag</div>
+            <div class="panel-body">
+                <section>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div>
+                                @Html.Image("/Content/Images/youtube_circle_512_512.png", "Flower")      @*dont use '~' before the src path*@
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div>
+                                @* dont use '~' before the src path.
+                        // Using overload 1.
+                                *@
+                                @Html.ImageTag("/Content/Images/youtube_256_256.png", "Flower")
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-offset-1 col-md-5">
+                            <div>                                
+                                @* Using overload 2. *@
+                                @Html.ImageTag("/Content/Images/youtube_256_256.png", "Flower", "btn btn-success")
+                            </div>
+                        </div>
+                        <div class="col-md-offset-2 col-md-4">
+                            <div>
+                                @* 'data_attributeName' will be converted into data-attributeName. *@
+                                @Html.ImageTag("/Content/Images/youtube_256_256.png", "Flower", "btn btn-success", "small-flower", new { data_info = "imgAction", data_toggle = "imgToggle" })
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="panel-heading panel-success text-warning">For Button Tag</div>
+            <div class="panel-body">
+                <section>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="col-md-offset-1 col-md-3">@Html.BootstrapButton("Submit Button", "btn-success", "myButton", "myTitle", false, true)</div>
+                            <div class="col-md-offset-1 col-md-3">@Html.BootstrapButton("<i class='btn-lg glyphicon glyphicon-align-center'></i>Submit Button", "btn-primary", "myButton", "myTitle")</div>
+                            <div class="col-md-offset-1 col-md-3">@Html.BootstrapButton("Reset Button", "btn-danger", "myButton", "myTitle", true, true, HTMLExtensionsCommon.HtmlbuttonTypes.reset)</div>                              
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="panel-heading panel-success text-warning">For Input Box</div>
+            <div class="panel-body">
+                <section>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="col-md-offset-5 col-md-7">@Html.BootstrapTextBoxFor(m => m.Id, "placeholderText", HTMLExtensionsCommon.HTML5InputTypes.number, new { data_attr = "attrValue" })</div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="panel-heading panel-success text-warning">For Check Box & Radio Button</div>
+            <div class="panel-body">
+                <section>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="col-md-6">
+                                @*ID and Name attributes are same as the model name*@
+                                @Html.BootstrapCheckBoxFor(m => m.IsActive, "Is Active?", new { @checked = "false" })
+                                @Html.BootstrapCheckBoxFor(m => m.Discounted, "Is Discounted?", new { data_attr = "attrValue" })
+                            </div>
+                            <div class="col-md-6">
+                                @Html.BootstrapRadioButtonFor(m => m.IsActive, "Is Active?", new { @checked = "true" })
+                                @Html.BootstrapRadioButtonFor(m => m.IsActive, "Is Discounted?", new { data_attr = "btnRadio" })
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="panel-footer text-right">
+                <div class="">
+                    <button class="btn btn-xs btn-warning">Done</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
